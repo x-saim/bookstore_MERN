@@ -85,3 +85,49 @@ app.get('/books/:id', async (request, response) => {
     response.status(500).send({ message: error.message });
   }
 });
+
+// UPDATE a book
+
+app.put('/books/:id', async (request, response) => {
+  try {
+    if (
+      !request.body.title ||
+      !request.body.author ||
+      !request.body.publishYear
+    ) {
+      return response.status(400).send({
+        message: 'Send all required fields: title, author, publishYear',
+      });
+    }
+
+    const { id } = request.params;
+
+    const result = await Book.findByIdAndUpdate(id, request.body);
+
+    if (!result) {
+      return response.status(404).json({ message: 'Book not found.' });
+    }
+    return response.status(200).send({ message: 'Book updated successfully.' });
+  } catch (error) {
+    console.log(error.message);
+    response.status(500).send({ message: error.message });
+  }
+});
+
+app.delete('/books/:id', async (request, response) => {
+  try {
+    const { id } = request.params;
+    const result = await Book.findByIdAndDelete(id);
+
+    if (!result) {
+      return response
+        .status(404)
+        .json({ message: 'Book could not be deleted.' });
+    }
+
+    return response.status(200).send({ message: 'Book deleted successfully.' });
+  } catch (error) {
+    console.log(error.message);
+    response.status(500).send({ message: error.message });
+  }
+});
