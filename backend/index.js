@@ -2,6 +2,7 @@ import express from 'express';
 import { PORT, mongoDBURL } from './config.js';
 import mongoose from 'mongoose';
 import booksRoutes from './routes/booksRoutes.js';
+import cors from 'cors';
 
 const app = express();
 
@@ -14,8 +15,6 @@ app.use(cors());
 app.get('/', (request, response) => {
   return response.status(234).send('Welcome to MERN Stack Tutorial');
 });
-
-app.use('/books', booksRoutes);
 
 // Connect DB
 mongoose
@@ -31,3 +30,4 @@ mongoose
   });
 
 // Express Router
+app.use('/books', booksRoutes);
