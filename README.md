@@ -24,8 +24,8 @@ This app allows users to manage a collection of books. Users can create, read, u
 1. **Clone the repository**:
 
    ```bash
-   git clone https://github.com/yourusername/mern-bookstore-app.git
-   cd mern-bookstore-app
+   git clone git@github.com:x-saim/bookstore_MERN.git
+   cd bookstore_MERN
    ```
 
 2. **Install backend dependencies**:
@@ -35,7 +35,7 @@ This app allows users to manage a collection of books. Users can create, read, u
    npm install
    ```
 
-3. **Set up environment variables**: Create a `.env` file in the backend directory and add the following:
+3. **Set up environment variables**: Create a `config.js` file in the backend directory and add the following:
 
    ```
    MONGODB_URI=your_mongodb_uri
